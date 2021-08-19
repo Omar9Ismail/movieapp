@@ -121,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             Row(children: [
                               RatingBar.builder(
+
                                 unratedColor: Colors.blueGrey,
                                 itemSize: 20,
                                 initialRating: 3,
