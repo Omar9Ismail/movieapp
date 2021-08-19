@@ -40,9 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
     movies = (response.data["results"] as List)
         .map((map) => Movie.fromMap(map))
         .toList();
-setState(() {
-
-});
 
     //for (int i=0 ;i<(response.data["result"] as List).length;i++){
     //  Movie movie=new Movie.fromMap(response.data['result'][i]);
@@ -124,6 +121,7 @@ setState(() {
                             ),
                             Row(children: [
                               RatingBar.builder(
+
                                 unratedColor: Colors.blueGrey,
                                 itemSize: 20,
                                 initialRating: 3,
@@ -325,10 +323,6 @@ class _MyHomePageState2 extends State<MyHomePage2> {
     movies = (response.data["results"] as List)
         .map((map) => Movie.fromMap(map))
         .toList();
-
-    setState(() {
-
-    });
   }
 
   @override
@@ -349,15 +343,12 @@ class _MyHomePageState2 extends State<MyHomePage2> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FlatButton(
-                    mouseCursor: MouseCursor.uncontrolled,
-                    hoverColor:Colors.green,
-                    focusColor:Colors.green,
+                InkWell(
                     child: Text(
                       'View all..',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
-                    onPressed: () {
+                    onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
