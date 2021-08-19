@@ -40,6 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
     movies = (response.data["results"] as List)
         .map((map) => Movie.fromMap(map))
         .toList();
+    setState(() {
+
+    });
 
     //for (int i=0 ;i<(response.data["result"] as List).length;i++){
     //  Movie movie=new Movie.fromMap(response.data['result'][i]);
@@ -63,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(
           'MoviesApp',
           style:
-              TextStyle(color: Colors.cyanAccent, fontWeight: FontWeight.bold),
+          TextStyle(color: Colors.cyanAccent, fontWeight: FontWeight.bold),
         ),
         backgroundColor: Color(0xff3E2C41),
       ),
@@ -80,12 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => Screen3(
-                              name: movie.title,
-                              realsedata: movie.releasedate,
-                              image: movie.posterpath,
-                              vote: movie.rate,
-                              overview: movie.overview,
-                            )));
+                          name: movie.title,
+                          realsedata: movie.releasedate,
+                          image: movie.posterpath,
+                          vote: movie.rate,
+                          overview: movie.overview,
+                        )));
               },
               child: Container(
                 height: 200,
@@ -100,72 +103,71 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Expanded(
                         child: Container(
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: Text(
-                                    movie.title ?? '',
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        movie.title ?? '',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(children: [
+                                  RatingBar.builder(
+                                    unratedColor: Colors.blueGrey,
+                                    itemSize: 20,
+                                    initialRating: 3,
+                                    minRating: 1,
+                                    direction: Axis.horizontal,
+                                    allowHalfRating: true,
+                                    itemCount: 5,
+                                    itemPadding:
+                                    EdgeInsets.symmetric(horizontal: 0.3),
+                                    itemBuilder: (context, _) => Icon(
+                                      Icons.star,
+                                      color: Colors.cyanAccent,
+                                    ),
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                    },
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    movie.rate.toString(),
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(children: [
-                              RatingBar.builder(
-
-                                unratedColor: Colors.blueGrey,
-                                itemSize: 20,
-                                initialRating: 3,
-                                minRating: 1,
-                                direction: Axis.horizontal,
-                                allowHalfRating: true,
-                                itemCount: 5,
-                                itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 0.3),
-                                itemBuilder: (context, _) => Icon(
-                                  Icons.star,
-                                  color: Colors.cyanAccent,
-                                ),
-                                onRatingUpdate: (rating) {
-                                  print(rating);
-                                },
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(
-                                movie.rate.toString(),
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ]),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              children: [
-                                Icon(Icons.access_time,
-                                    size: 15, color: Colors.white),
+                                ]),
                                 SizedBox(
-                                  width: 10,
+                                  height: 10,
                                 ),
-                                Text(movie.releasedate ?? '',
-                                    style: TextStyle(color: Colors.white)),
-                              ],
-                            ),
-                          ]),
-                    ))
+                                Row(
+                                  children: [
+                                    Icon(Icons.access_time,
+                                        size: 15, color: Colors.white),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(movie.releasedate ?? '',
+                                        style: TextStyle(color: Colors.white)),
+                                  ],
+                                ),
+                              ]),
+                        ))
                   ],
                 ),
               ),
@@ -184,11 +186,11 @@ class Screen3 extends StatelessWidget {
 
   const Screen3(
       {Key? key,
-      this.name,
-      this.overview,
-      this.realsedata,
-      this.image,
-      this.vote})
+        this.name,
+        this.overview,
+        this.realsedata,
+        this.image,
+        this.vote})
       : super(key: key);
 
   @override
@@ -227,7 +229,7 @@ class Screen3 extends StatelessWidget {
               Text(
                 name ?? '',
                 style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 15,
@@ -323,6 +325,10 @@ class _MyHomePageState2 extends State<MyHomePage2> {
     movies = (response.data["results"] as List)
         .map((map) => Movie.fromMap(map))
         .toList();
+
+    setState(() {
+
+    });
   }
 
   @override
@@ -343,12 +349,15 @@ class _MyHomePageState2 extends State<MyHomePage2> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                InkWell(
+                FlatButton(
+                    mouseCursor: MouseCursor.uncontrolled,
+                    hoverColor:Colors.green,
+                    focusColor:Colors.green,
                     child: Text(
                       'View all..',
-                      style: TextStyle(fontSize: 15, color: Colors.white),
+                      style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
-                    onTap: () {
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -372,12 +381,12 @@ class _MyHomePageState2 extends State<MyHomePage2> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Screen3(
-                                      name: movie.title,
-                                      realsedata: movie.releasedate,
-                                      image: movie.posterpath,
-                                      vote: movie.rate,
-                                      overview: movie.overview,
-                                    )));
+                                  name: movie.title,
+                                  realsedata: movie.releasedate,
+                                  image: movie.posterpath,
+                                  vote: movie.rate,
+                                  overview: movie.overview,
+                                )));
                       },
                       child: Container(
                         height: 100,
@@ -425,12 +434,12 @@ class _MyHomePageState2 extends State<MyHomePage2> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Screen3(
-                                      name: movie.title,
-                                      realsedata: movie.releasedate,
-                                      image: movie.posterpath,
-                                      vote: movie.rate,
-                                      overview: movie.overview,
-                                    )));
+                                  name: movie.title,
+                                  realsedata: movie.releasedate,
+                                  image: movie.posterpath,
+                                  vote: movie.rate,
+                                  overview: movie.overview,
+                                )));
                       },
                       child: Container(
                         height: 100,
